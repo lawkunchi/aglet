@@ -1,0 +1,35 @@
+.banner-section {
+	height: 70vh;
+	
+
+
+	.card {
+			height: inherit;
+			position: absolute;
+			top: 0;
+			overflow: hidden;
+			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, hsl(0, 0%, 0%) 100%);
+			border: none;
+			border-radius: 0;
+
+		.figure {
+			height: inherit;
+		}
+
+		.card-title {
+			overflow: visible;
+			font-weight: 900;
+			font-family: "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif, "System Default", serif;
+			color: $light;
+			font-size: 65px;
+			letter-spacing: -1.4px;
+			line-height: 0.9;
+			text-transform: uppercase;
+			width: 600px;
+		}
+	}
+}
+
+
+
+

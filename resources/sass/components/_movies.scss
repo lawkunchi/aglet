@@ -1,0 +1,70 @@
+.category-title {
+	margin-top: 50px;
+	color: $light;
+	text-align: left;
+	font-weight: 700;
+	font-family: "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif, "System Default", serif;
+	font-size: 28px;
+	line-height: 1.2;
+}
+
+
+
+.movie-list {
+	.card {
+		border: 0;
+		border-radius: 10px;
+		width: 90%;
+		cursor: pointer;
+		.card-img-top {
+		    border-radius: 10px;
+		}
+
+	}
+}
+
+.movie-preview {
+	width: 100%;
+	padding: 50px;
+	background: $dark;
+	.card {
+		border: 0;
+		border-radius: 20px;
+		width: 120px;
+		height: 200px;
+		margin-top: 10px;
+
+		img {
+			height: inherit;
+			width: 100%;
+			border-radius: 20px;
+		}
+
+	}
+
+	
+	h4 {
+		font-weight: 800;
+		font-family: "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif, "System Default", serif;
+		color: $light;
+		font-size:47px;
+		line-height: 1.2;
+	}
+
+	p {
+		overflow: hidden;
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		word-break: break-word;
+		font-family: "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif, serif;
+		color: #ffffff;
+		font-size: 16px;
+		line-height: 1.6;
+	}
+	.btn {
+		width: 130px;
+		height: 50px;
+		font-size: 13px;
+	}
+}
+
