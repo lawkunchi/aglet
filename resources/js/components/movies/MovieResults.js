@@ -21,6 +21,8 @@ export default class Movie extends Component {
                   movie: '',
                   title: '',
                   movie: '',
+                  overview: '',
+                  release: '',
                   bottom: false
             }
       }
@@ -44,7 +46,9 @@ export default class Movie extends Component {
                         this.setState({
                               poster: 'https://image.tmdb.org/t/p/original'+res.data.poster,
                               title: res.data.title,
-                              movie: res.data.movie_id
+                              movie: res.data.movie_id,
+                              overview: res.data.overview,
+                              release: res.data.release
                         })
                   } )
                   .catch((err) => {
@@ -61,8 +65,8 @@ export default class Movie extends Component {
                   onClick={this.toggleDrawer(anchor, false)}
                   onKeyDown={this.toggleDrawer(anchor, false)}
                 >
-                  <List>
-                          {this.state.title}
+                  <List className="movie-preview">
+                          <Preview movie={this.state.movie} poster={this.state.poster} title={this.state.title} overview={this.state.overview} release={this.state.release}/>
                   </List>
           </Box>
 }

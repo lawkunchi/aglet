@@ -47,4 +47,8 @@ export const useStyles = makeStyles(theme => ({
      color: 'white',
      textDecoration: "none"
    },
+   header: {
+    background: 'transparent !important',
+    boxShadow: 'none',
+   },
   }));

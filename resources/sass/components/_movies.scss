@@ -28,11 +28,12 @@
 	padding: 50px;
 	background: $dark;
 	.card {
-		border: 0;
+		border: 0 !important;
 		border-radius: 20px;
 		width: 120px;
 		height: 200px;
 		margin-top: 10px;
+		cursor: pointer;
 
 		img {
 			height: inherit;

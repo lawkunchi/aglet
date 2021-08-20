@@ -63,16 +63,21 @@ export default class Movies extends Component {
             const movies = this.state.movies;
 
             return (
-                  <div className="movie-search container movie-list w-50 mx-auto">
-                  <Card>
-                        {/*<input value={this.state.value} onChange={e => this.onChangeHandler(e)} placeholder="Type something to search"/>*/}
-                        <TextField id="filled-basic" label="Type a movie name" variant="filled"  value={this.state.value} onChange={e => this.onChangeHandler(e)} />
-                        <div className="row">
-                         { movies.map(movie => {
-                                return <MovieResults  movie={movie} key={movie.id}/>
-                            })}
-                         </div>
-                         </Card>
+                  <div className="movie-search container">
+                        <div className="movie-search container movie-list w-50 mx-auto">
+                              <Card>
+                              {/*<input value={this.state.value} onChange={e => this.onChangeHandler(e)} placeholder="Type something to search"/>*/}
+                              <TextField id="filled-basic" label="Type a movie name" variant="filled"  value={this.state.value} onChange={e => this.onChangeHandler(e)} />
+                             
+                               </Card>
+                               
+                        </div>
+
+                         <div className="row mt-5">
+                               { movies.map(movie => {
+                                      return <MovieResults  movie={movie} key={movie.id}/>
+                                  })}
+                               </div>
 
                   </div>
           );

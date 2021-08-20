@@ -27,7 +27,7 @@ export default class Banner extends Component {
                               </figure>
 
                               <div className="card-img-overlay">
-                                    <h5 className="card-title mt-5">{title}</h5>
+                                    <h5 className="card-title">{title}</h5>
                                     <button type="button" className="btn btn-primary mr-5 mt-5">Play Now</button>
                                     <WishListButton movieId={movie_id}/>
                               </div>

@@ -18381,17 +18381,7 @@ var Index = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var price = this.state.price;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-          className: "container-fluid",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Header, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Product, {
-            parentCallBack: this.handleCallback
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Footer, {
-          totalPrice: this.state.price
-        })]
-      });
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {});
     }
   }]);
 
@@ -18401,12 +18391,12 @@ var Index = /*#__PURE__*/function (_Component) {
 
 setTimeout(function () {
   return react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.StrictMode, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_redux__WEBPACK_IMPORTED_MODULE_4__.Provider, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_redux__WEBPACK_IMPORTED_MODULE_4__.Provider, {
       store: _redux_CreateStore__WEBPACK_IMPORTED_MODULE_3__.store,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_App__WEBPACK_IMPORTED_MODULE_2__.default, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Index, {
         hideLoader: hideLoader,
         showLoader: showLoader
-      })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_App__WEBPACK_IMPORTED_MODULE_2__.default, {})]
     })
   }), document.getElementById('app'));
 }, 5000);
@@ -18735,7 +18725,7 @@ var Banner = /*#__PURE__*/function (_Component) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "card-img-overlay",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h5", {
-              className: "card-title mt-5",
+              className: "card-title",
               children: title
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
               type: "button",
@@ -19298,7 +19288,9 @@ var Movie = /*#__PURE__*/function (_Component) {
             _this.setState({
               poster: 'https://image.tmdb.org/t/p/original' + res.data.poster,
               title: res.data.title,
-              movie: res.data.movie_id
+              movie: res.data.movie_id,
+              overview: res.data.overview,
+              release: res.data.release
             });
           })["catch"](function (err) {
             console.log(err);
@@ -19316,7 +19308,14 @@ var Movie = /*#__PURE__*/function (_Component) {
         onClick: _this.toggleDrawer(anchor, false),
         onKeyDown: _this.toggleDrawer(anchor, false),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_List__WEBPACK_IMPORTED_MODULE_4__.default, {
-          children: _this.state.title
+          className: "movie-preview",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Preview_js__WEBPACK_IMPORTED_MODULE_1__.default, {
+            movie: _this.state.movie,
+            poster: _this.state.poster,
+            title: _this.state.title,
+            overview: _this.state.overview,
+            release: _this.state.release
+          })
         })
       });
     });
@@ -19326,7 +19325,7 @@ var Movie = /*#__PURE__*/function (_Component) {
     _this.state = (_this$state = {
       movie: '',
       title: ''
-    }, _defineProperty(_this$state, "movie", ''), _defineProperty(_this$state, "bottom", false), _this$state);
+    }, _defineProperty(_this$state, "movie", ''), _defineProperty(_this$state, "overview", ''), _defineProperty(_this$state, "release", ''), _defineProperty(_this$state, "bottom", false), _this$state);
     return _this;
   }
 
@@ -20200,26 +20199,29 @@ var Movies = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       var movies = this.state.movies;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: "movie-search container movie-list w-50 mx-auto",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-            id: "filled-basic",
-            label: "Type a movie name",
-            variant: "filled",
-            value: this.state.value,
-            onChange: function onChange(e) {
-              return _this2.onChangeHandler(e);
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-            className: "row",
-            children: movies.map(function (movie) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_movies_MovieResults__WEBPACK_IMPORTED_MODULE_4__.default, {
-                movie: movie
-              }, movie.id);
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "movie-search container",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "movie-search container movie-list w-50 mx-auto",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+              id: "filled-basic",
+              label: "Type a movie name",
+              variant: "filled",
+              value: this.state.value,
+              onChange: function onChange(e) {
+                return _this2.onChangeHandler(e);
+              }
             })
-          })]
-        })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "row mt-5",
+          children: movies.map(function (movie) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_movies_MovieResults__WEBPACK_IMPORTED_MODULE_4__.default, {
+              movie: movie
+            }, movie.id);
+          })
+        })]
       });
     }
   }]);
@@ -21330,6 +21332,10 @@ var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_0__.default
     link: {
       color: 'white',
       textDecoration: "none"
+    },
+    header: {
+      background: 'transparent !important',
+      boxShadow: 'none'
     }
   };
 });

@@ -31,15 +31,9 @@ export default class Index extends Component {
 
 	render() {
 
-		const {price} = this.state;
 		return (
 	    		<div>
-		            <div className="container-fluid">
-                <Header />
-                
-		            <Product parentCallBack = {this.handleCallback} />
-		            </div>
-		            <Footer totalPrice ={this.state.price} />
+		          
 	            </div>
 
 	    );
@@ -54,7 +48,8 @@ setTimeout(() =>
   ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<App hideLoader={hideLoader} showLoader={showLoader} />
+			<Index hideLoader={hideLoader} showLoader={showLoader} />
+			<App/>
 		</Provider>
 	</React.StrictMode>,document.getElementById('app')
 )

@@ -10129,6 +10129,10 @@ header .MuiAppBar-colorPrimary {
   line-height: 0.9;
   text-transform: uppercase;
   width: 600px;
+  margin-top: 100px;
+}
+.banner-section .card .btn {
+  margin-top: 30px;
 }
 
 .category-list .card {
@@ -10187,11 +10191,12 @@ header .MuiAppBar-colorPrimary {
   background: #000000;
 }
 .movie-preview .card {
-  border: 0;
+  border: 0 !important;
   border-radius: 20px;
   width: 120px;
   height: 200px;
   margin-top: 10px;
+  cursor: pointer;
 }
 .movie-preview .card img {
   height: inherit;
