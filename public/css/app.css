@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 @charset "UTF-8";
 .body {
-  background: #000000;
+  background-image: url("https://image.tmdb.org/t/p/original/hJuDvwzS0SPlsE6MNFOpznQltDZ.jpg");
 }
 
 .btn {
