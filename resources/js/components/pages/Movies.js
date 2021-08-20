@@ -13,15 +13,35 @@ export default class Movies extends Component {
             this.renderMovies = this.renderMovies.bind(this);
             this.state = {
                   movies: [],
-                  loading: '',
-                  value: ''
+                  loading: true,
+                  value: 'adventure'
             }
+      }
+
+      componentDidMount() {
+            this.setState({ loading: true });
+            axios.get('http://127.0.0.1:8000/api/movies/search/adventure')
+                  .then(res => {
+                    
+                        this.setState({
+                              movies: res.data,
+                              loading: false
+                        })
+                  } )
+                  .catch((err) => {
+                        console.log(err);
+                  });
       }
 
       onChangeHandler = async e => {
 
+            let queryString = e.target.value;
+            if(e.target.value == "") {
+                  queryString = "adventure";
+            }
+
             this.setState({ loading: true });
-            axios.get('http://127.0.0.1:8000/api/movies/search/'+e.target.value)
+            axios.get('http://127.0.0.1:8000/api/movies/search/'+queryString)
                   .then(res => {
                     
                         this.setState({
@@ -37,25 +57,15 @@ export default class Movies extends Component {
       };
 
       renderMovies = () => {
-            this.setState({
-                  preview_class_name: "",
-                  movie_id: id,
-            })
-            console.log("clicked", id);
-
-
-            let movies = <h1>There's no movies</h1>;
 
             if (this.state.movies) {
-                  movies = "";
+                   const movies = this.state.movies;
                   { movies.map(movie => {
-                        <div className="col-2">
-                              movies += <Movie  movie={movie} key={movie.id}/>
-                        </div>
-                  })};
+                    return <MovieResults  movie={movie} key={movie.id}/>
+                })}
             }
 
-            return movies;
+            return <h1>There's no movies</h1>;
       }
 
       render() {
@@ -72,12 +82,13 @@ export default class Movies extends Component {
                                </Card>
                                
                         </div>
-
+                        {this.state.loading == true ? <div className="loader"></div> : 
                          <div className="row mt-5">
-                               { movies.map(movie => {
+                                { movies.map(movie => {
                                       return <MovieResults  movie={movie} key={movie.id}/>
                                   })}
-                               </div>
+                         </div>
+                         }
 
                   </div>
           );

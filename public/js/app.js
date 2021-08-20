@@ -20118,15 +20118,22 @@ var Movies = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "onChangeHandler", /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+        var queryString;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                queryString = e.target.value;
+
+                if (e.target.value == "") {
+                  queryString = "adventure";
+                }
+
                 _this.setState({
                   loading: true
                 });
 
-                axios__WEBPACK_IMPORTED_MODULE_2___default().get('http://127.0.0.1:8000/api/movies/search/' + e.target.value).then(function (res) {
+                axios__WEBPACK_IMPORTED_MODULE_2___default().get('http://127.0.0.1:8000/api/movies/search/' + queryString).then(function (res) {
                   _this.setState({
                     movies: res.data,
                     loading: false
@@ -20139,7 +20146,7 @@ var Movies = /*#__PURE__*/function (_Component) {
                   value: e.target.value
                 });
 
-              case 3:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -20153,50 +20160,53 @@ var Movies = /*#__PURE__*/function (_Component) {
     }());
 
     _defineProperty(_assertThisInitialized(_this), "renderMovies", function () {
-      _this.setState({
-        preview_class_name: "",
-        movie_id: id
-      });
-
-      console.log("clicked", id);
-
-      var movies = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
-        children: "There's no movies"
-      });
-
       if (_this.state.movies) {
-        movies = "";
+        var movies = _this.state.movies;
         {
           movies.map(function (movie) {
-            /*#__PURE__*/
-            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-              className: "col-2",
-              children: ["movies += ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Movie, {
-                movie: movie
-              }, movie.id)]
-            });
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_movies_MovieResults__WEBPACK_IMPORTED_MODULE_4__.default, {
+              movie: movie
+            }, movie.id);
           });
         }
-        ;
       }
 
-      return movies;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
+        children: "There's no movies"
+      });
     });
 
     _this.onChangeHandler = _this.onChangeHandler.bind(_assertThisInitialized(_this));
     _this.renderMovies = _this.renderMovies.bind(_assertThisInitialized(_this));
     _this.state = {
       movies: [],
-      loading: '',
-      value: ''
+      loading: true,
+      value: 'adventure'
     };
     return _this;
   }
 
   _createClass(Movies, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.setState({
+        loading: true
+      });
+      axios__WEBPACK_IMPORTED_MODULE_2___default().get('http://127.0.0.1:8000/api/movies/search/adventure').then(function (res) {
+        _this2.setState({
+          movies: res.data,
+          loading: false
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var movies = this.state.movies;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -20210,11 +20220,13 @@ var Movies = /*#__PURE__*/function (_Component) {
               variant: "filled",
               value: this.state.value,
               onChange: function onChange(e) {
-                return _this2.onChangeHandler(e);
+                return _this3.onChangeHandler(e);
               }
             })
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        }), this.state.loading == true ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "loader"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
           className: "row mt-5",
           children: movies.map(function (movie) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_movies_MovieResults__WEBPACK_IMPORTED_MODULE_4__.default, {
