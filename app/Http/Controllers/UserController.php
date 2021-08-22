@@ -71,11 +71,13 @@ class UserController extends Controller {
                         ], 422);
                   }
                   $accessToken = auth()->user()->createToken('authToken')->accessToken;
+
+
                   $responseMessage = "Login Successful";
-                  return $this->respondWithToken($accessToken,$responseMessage,auth()->user());
+                  return $this->respondWithToken($accessToken['token'],$responseMessage,auth()->user());
             }
             else{
-                  $responseMessage = "Sorry, this user does not exist";
+                  $responseMessage = "Invalid username or password";
                   return response()->json([
                         "success" => false,
                         "message" => $responseMessage,
@@ -84,9 +86,12 @@ class UserController extends Controller {
             }
       }
 
+
       public function profile(){
             $responseMessage = "user profile";
             $data = Auth::guard("api")->user();
+                  var_dump($data); die('sds');
+
             return response()->json([
                   "success" => true,
                   "message" => $responseMessage,

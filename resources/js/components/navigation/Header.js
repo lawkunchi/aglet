@@ -1,36 +1,65 @@
-import React, { Component } from 'react';
+import React,{useEffect} from 'react';
+import {AppBar, CssBaseline, Toolbar, Typography, Button} from '@material-ui/core';
+import {LogoutAction} from '../../redux/actions/AuthActions';
+import {useDispatch, useSelector} from 'react-redux';
+import {useHistory,Link} from 'react-router-dom'; 
+import {useStyles} from '../../styles/styles';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
+import SearchIcon from '@material-ui/icons/Search';
 
+export default function Header(props) {
+	const history = useHistory();
+	const classes = useStyles(); 
+	const dispatch = useDispatch();
+	const authResponse = useSelector(state=>state.userAuth.authResponse);
+	const logOut = () => {
+		dispatch(LogoutAction());
+		history.push("/user/login");
+	}
+	const login = () => {
+		history.push("/user/login");
+	}
 
-export default class Header extends Component {
-      render() {
-            return (
+	const gotToContact = (e, url) => {
+		history.push('/contact');
+	}
 
-                  <div className="main-header">
-                        <ul className="nav">
-                              <li className="nav-item">
-                              <a className="nav-link active" aria-current="page" href="#">Home</a>
-                              </li>
-                              <li className="nav-item">
-                              <a className="nav-link" href="#">Movies</a>
-                              </li>
-                              <li className="nav-item">
-                              <a className="nav-link" href="#">Series</a>
-                              </li>
-                              <li className="nav-item">
-                              <a className="nav-link">Kids</a>
-                              </li>
+	const searchMovie = (e, url) => {
+		history.push("/search");
+	}
 
+	const token = localStorage.getItem('user-token');
+	useEffect(() => {
+		if(authResponse !== "" && authResponse.success === true){
+		alert(authResponse.message);
+		localStorage.removeItem('user-token');
+	} 
+	return () => {
+	};
+	},[authResponse])
+	return (
+		<div className={classes.root}>
+			<CssBaseline />
+				<AppBar position="fixed" className={classes.header}>
+				<Toolbar>
+					<Typography variant="h6"  className={classes.title}>
+						<Link to="/" className={classes.link}> MOVIE APP</Link>
+					</Typography>
+					
+					<Button color="inherit" onClick={e => searchMovie(e)} endIcon={<SearchIcon />}>Search</Button> 
+					{
+					token !== null && token !== "" ?
+					<div>
 
-                        </ul>
+					<Button color="inherit" onClick={e => gotToContact(e, '/user')} endIcon={<AccountCircleIcon />}>Contact</Button> 
+					<Button color="inherit" onClick={e => logOut(e, '/user')} endIcon={<KeyboardReturnIcon />}>Logout</Button> 
 
-                        <ul className="nav">
-                              <li className="nav-item float-right">
-                              <a className="nav-link active" aria-current="page" href="#">Profile</a>
-                              </li>
-
-                        </ul>
-                  </div>
-            
-            );
-      }
+					</div>:
+					<Button color="inherit" onClick={login}>Login</Button>
+					}
+				</Toolbar>
+			</AppBar>
+		</div>
+	);
 }

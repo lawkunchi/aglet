@@ -2,14 +2,7 @@ import React, { Component } from 'react';
 import  Preview from './Preview.js';
 import Box from '@material-ui/core/Box';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 export default class Movie extends Component {
 
@@ -23,7 +16,7 @@ export default class Movie extends Component {
                   movie: '',
                   overview: '',
                   release: '',
-                  bottom: false
+                  bottom: false,
             }
       }
 
@@ -48,7 +41,8 @@ export default class Movie extends Component {
                               title: res.data.title,
                               movie: res.data.movie_id,
                               overview: res.data.overview,
-                              release: res.data.release
+                              release: res.data.release,
+                              isPreviewLoading: false
                         })
                   } )
                   .catch((err) => {
@@ -66,7 +60,7 @@ export default class Movie extends Component {
                   onKeyDown={this.toggleDrawer(anchor, false)}
                 >
                   <List className="movie-preview">
-                          <Preview movie={this.state.movie} poster={this.state.poster} title={this.state.title} overview={this.state.overview} release={this.state.release}/>
+                        <Preview movie={this.state.movie} poster={this.state.poster} title={this.state.title} overview={this.state.overview} release={this.state.release}/>
                   </List>
           </Box>
 }
@@ -81,11 +75,14 @@ export default class Movie extends Component {
                               <img src={poster} className="card-img-top" alt="..."/>
                         </div>
 
+
+
                           <Drawer
                               anchor={'bottom'}
                               open={this.state['bottom']}
                               onClose={this.toggleDrawer('bottom', null, false)}
                             >
+                            
                               {this.list('bottom')}
                             </Drawer>
 

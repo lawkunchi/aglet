@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-
 import  Banner from '../banner/Banner.js';
 import  CategoryList from '../categories/CategoryList.js';
 import  MovieList from '../movies/MovieList.js';
-
-import  Preview from '../movies/Preview.js';
 
 export default class Landing extends Component {
 
@@ -17,7 +14,8 @@ export default class Landing extends Component {
                   favorite_movies: [],
                   poster: '',
                   title: '',
-                  movie_id: 527774
+                  movie_id: 527774,
+                  loading: true,
             };
       }
 
@@ -71,6 +69,10 @@ export default class Landing extends Component {
             .catch((err) => {
                   console.log(err);
             })
+
+            this.setState({
+                        loading: false,
+                  })
             
       }
 
@@ -79,26 +81,35 @@ export default class Landing extends Component {
             const token = localStorage.getItem('user-token');
 
             return (
-                  <div style={{ backgroundImage: `url(${this.state.poster})`, paddingBottom: '100px' }}>
-                        <Banner poster={this.state.poster} title={this.state.title} movie_id={this.state.movie_id}/>
 
-                        <div className="dark-section container-fluid">
-                              <CategoryList/>
+                  <>
+                        {
+                              this.state.loading == true ? 
+                                    <div className="loader">
+                                    </div> : 
+                        
 
-                              {
-                                    token !== null && token !== "" ?
-                                    <MovieList movies ={this.state.favorite_movies} title="My List" />:
-                                    ""
-                              }
+                                    <div style={{ backgroundImage: `url(${this.state.poster})`, paddingBottom: '100px' }}>
+                                          <Banner poster={this.state.poster} title={this.state.title} movie_id={this.state.movie_id}/>
 
-                              <MovieList movies ={this.state.popular_movies} title="Popular" />
+                                          <div className="dark-section container-fluid">
+                                                <CategoryList/>
 
-                              <MovieList movies ={this.state.upcoming_movies} title="Coming Soon" />
-                        </div>
+                                                {
+                                                      token !== null && token !== "" ?
+                                                      <MovieList movies ={this.state.favorite_movies} title="My List" />:
+                                                      ""
+                                                }
 
-                        {/*<Preview className="" movieId="7271"/>*/}
+                                                <MovieList movies ={this.state.popular_movies} title="Popular" />
 
-                  </div>
+                                                <MovieList movies ={this.state.upcoming_movies} title="Coming Soon" />
+                                          </div>
+
+                                    </div>
+                        }
+
+                  </>
             
             );
       }

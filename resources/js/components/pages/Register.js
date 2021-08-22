@@ -1,6 +1,5 @@
 import React,{useState} from "react";
 import { Button, TextField, Card } from "@material-ui/core";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { useStyles } from "../../styles/styles";
 import {Link } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
@@ -101,10 +100,10 @@ function Register() {
 							className={classes.fullWidth}
 							variant="contained"
 							color="primary"
-							endIcon={<AccountCircleIcon />}
 							>
 							<b>Register</b>
 							</Button>
+							<br />
 							<br />
 							<div className={classes.linkContainer}>
 							<Link to="/user/login">Login Here</Link>

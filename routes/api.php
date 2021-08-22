@@ -40,7 +40,7 @@ Route::get('/movies/search/{querystring}', [
     'as' => 'movies.search'
 ]);
 
-Route::post('/movies/favorite/{id}', [
+Route::post('/movies/favorite/{id}/{userId}', [
     'uses' => 'App\Http\Controllers\MovieController@addMovieToFavoriteList',
     'as' => 'add.favorite'
 ]);
@@ -66,10 +66,11 @@ Route::group([ 'middleware' => 'CORS'], function() {
             'as' => 'login'
         ]);
 
-        Route::get('/profile', [
+        Route::post('/profile', [
             'uses' => 'App\Http\Controllers\UserController@profile',
-            'as' => 'user.profile'
+            'as' => 'profile'
         ]);
+
 
         Route::get('/logout', [
             'uses' => 'App\Http\Controllers\UserController@logout',

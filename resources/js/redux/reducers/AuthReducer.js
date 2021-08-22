@@ -27,7 +27,7 @@ const AuthReducer = (state = initState, action) => {
 	case ActionTypes.LOGIN_SUCCESS:
 		return {
 		...state,
-		authResponse: "redirecting to dashboard...",
+		authResponse: "redirecting to home...",
 	};
 	case ActionTypes.LOGIN_ERROR:
 		return {

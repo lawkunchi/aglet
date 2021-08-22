@@ -26,12 +26,13 @@ export const useStyles = makeStyles(theme => ({
       marginTop: '60px'
     },
     fullWidth:{
-      width:'90%',
+      width:'100%',
      marginBottom:'25px',
      marginTop:'20px'
     },
     linkContainer:{
-     marginBottom:'20px'
+     marginBottom:'20px',
+     'color': '#8400ff'
     },
     authResponse:{
       fontWeight:'bolder'

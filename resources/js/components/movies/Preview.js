@@ -4,7 +4,6 @@ import  WishListButton from '../utils/WishListButton.js';
 export default class Preview extends Component {
       render() {
 
-
             const {title, poster, overview, release, movie} = this.props;
 
             return (

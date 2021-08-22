@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import Box from '@material-ui/core/Box';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 import Preview from './Preview';
 
@@ -60,7 +53,8 @@ export default class Movie extends Component {
         };
 
       list = (anchor, id) => {
-            return <Box
+            return 
+            <Box
                   sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
                   role="presentation"
                   onClick={this.toggleDrawer(anchor, false)}
@@ -70,7 +64,7 @@ export default class Movie extends Component {
                           <Preview movie={this.state.movie} poster={this.state.poster} title={this.state.title} overview={this.state.overview} release={this.state.release}/>
                   </List>
           </Box>
-}
+      }
 
       render() {
 

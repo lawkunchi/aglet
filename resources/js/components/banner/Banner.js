@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import  Header from '../navigation/Header.js';
 import axios from "axios";
 import  WishListButton from '../utils/WishListButton.js';
 
 
 
 export default class Banner extends Component {
-
-      constructor(props) {
-            super(props);
-       
-      }
 
       render() {
 

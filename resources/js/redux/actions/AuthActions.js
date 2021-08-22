@@ -27,13 +27,16 @@ export const LoginAction = (credentials, history) => {
 			localStorage.setItem('user-token',res.token)
 			localStorage.setItem('user-id', res.data.id)
 			dispatch({type: ActionTypes.LOGIN_SUCCESS});
-			history.push('/user');
+			history.push('/');
 		}else if(res.hasOwnProperty('success') && res.success === false){
 			dispatch({type: ActionTypes.LOGIN_ERROR,res});
+			alert(res.message);
+
 		}
 
 		}, error => {
 			dispatch({type : ActionTypes.CODE_ERROR, error})
+			alert(error);
 		})
 	}
 }
@@ -43,6 +46,7 @@ export const LogoutAction = () => {
 	return (dispatch) => {
 		dispatch({type: ActionTypes.RESTART_AUTH_RESPONSE});
 		LogOutUserService().then((res) => {
+			localStorage.clear();
 		if(res.hasOwnProperty('success') && res.success === true){
 		dispatch({type: ActionTypes.LOGOUT_SUCCESS,res});
 		}else if(res.hasOwnProperty('success') && res.success === false){

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import  Header from '../navigation/Header.js';
 import axios from "axios";
 
 
@@ -16,17 +15,29 @@ export default class WishListButton extends Component {
 
       addToWishList = id => {
 
-            axios.post('http://127.0.0.1:8000/api/movies/favorite/'+id)
-            .then(res => {
-            alert(res.data.success);
-                   
-                  this.setState({
-                        message: res.data.success
-                  })  
-            } )
-            .catch((err) => {
-                  console.log(err);
-            })
+            let user_id = localStorage.getItem('user-id');
+
+            console.log(user_id);
+
+            if(user_id != null) {
+                  axios.post('http://127.0.0.1:8000/api/movies/favorite/'+id+'/'+user_id)
+                  .then(res => {
+                  alert(res.data.success);
+                         
+                        this.setState({
+                              message: res.data.success
+                        })  
+                  } )
+                  .catch((err) => {
+                        console.log(err);
+                  })
+            }
+
+            else {
+                  alert("Log in first to continue!");
+            }
+
+            
 
       }
 

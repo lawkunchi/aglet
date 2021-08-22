@@ -15,19 +15,12 @@ export default class Index extends Component {
 
 	constructor(props) {
             super(props);
-
       }
 
 	
 	componentDidMount() {
 	    this.props.hideLoader();
-	    localStorage.clear();
   	}
-
-  	handleCallback = (childData) => {
-            this.setState({price: childData});
-      }
-
 
 	render() {
 
@@ -40,8 +33,6 @@ export default class Index extends Component {
 	}
     
 }
-
-
 
 
 setTimeout(() => 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { search } from '../../utils'
 import MovieResults from '../movies/MovieResults';
 import { Button, TextField, Card } from "@material-ui/core";
 
@@ -10,16 +9,14 @@ export default class Movies extends Component {
       constructor(props) {
             super(props);
             this.onChangeHandler = this.onChangeHandler.bind(this);
-            this.renderMovies = this.renderMovies.bind(this);
             this.state = {
                   movies: [],
                   loading: true,
-                  value: 'adventure'
+                  value: ''
             }
       }
 
       componentDidMount() {
-            this.setState({ loading: true });
             axios.get('http://127.0.0.1:8000/api/movies/search/adventure')
                   .then(res => {
                     
@@ -45,8 +42,7 @@ export default class Movies extends Component {
                   .then(res => {
                     
                         this.setState({
-                              movies: res.data,
-                              loading: false
+                              movies: res.data
                         })
                   } )
                   .catch((err) => {
@@ -55,18 +51,6 @@ export default class Movies extends Component {
 
             this.setState({ value: e.target.value });
       };
-
-      renderMovies = () => {
-
-            if (this.state.movies) {
-                   const movies = this.state.movies;
-                  { movies.map(movie => {
-                    return <MovieResults  movie={movie} key={movie.id}/>
-                })}
-            }
-
-            return <h1>There's no movies</h1>;
-      }
 
       render() {
 
