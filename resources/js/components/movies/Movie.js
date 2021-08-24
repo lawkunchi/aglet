@@ -53,8 +53,7 @@ export default class Movie extends Component {
         };
 
       list = (anchor, id) => {
-            return 
-            <Box
+            return <Box
                   sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
                   role="presentation"
                   onClick={this.toggleDrawer(anchor, false)}

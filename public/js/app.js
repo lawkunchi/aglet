@@ -18969,10 +18969,7 @@ var Movie = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "list", function (anchor, id) {
-      return;
-
-      /*#__PURE__*/
-      (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_Box__WEBPACK_IMPORTED_MODULE_3__.default, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_Box__WEBPACK_IMPORTED_MODULE_3__.default, {
         sx: {
           width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250
         },
